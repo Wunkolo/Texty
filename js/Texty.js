@@ -162,12 +162,21 @@ $(document).ready(
 		$.each(Transforms, function (index, CurTransform) {
 			var CurOutputDiv = $("<div>");
 			CurOutputDiv.addClass("form-group")
+			CurOutputDiv.addClass("card")
+			CurOutputDiv.addClass("card-body")
 			CurOutputDiv.attr("id", CurTransform.id + "-div");
 
-			var CurLabel = $("<label>");
-			CurLabel.attr("for", CurTransform.id);
-			CurLabel.html(CurTransform.name);
-			CurLabel.appendTo(CurOutputDiv);
+			var CurTitle = $("<h5>");
+			CurOutputDiv.addClass("card-title")
+			CurTitle.html(CurTransform.name);
+			CurTitle.appendTo(CurOutputDiv);
+
+			var CurSubTitle = $("<p>");
+			CurSubTitle.addClass("card-subtitle")
+			CurSubTitle.addClass("mb-2")
+			CurSubTitle.addClass("text-muted")
+			CurSubTitle.html(CurTransform.description);
+			CurSubTitle.appendTo(CurOutputDiv);
 
 			var CurTextarea = $("<textarea>");
 			CurTextarea.addClass("form-control");
