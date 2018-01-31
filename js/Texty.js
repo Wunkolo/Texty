@@ -161,13 +161,13 @@ $(document).ready(
 		var Outputs = $("#Outputs");
 		$.each(Transforms, function (index, CurTransform) {
 			var CurOutputDiv = $("<div>");
-			CurOutputDiv.addClass("form-group")
-			CurOutputDiv.addClass("card")
-			CurOutputDiv.addClass("card-body")
+			CurOutputDiv.addClass("form-group");
+			CurOutputDiv.addClass("card");
+			CurOutputDiv.addClass("card-body");
 			CurOutputDiv.attr("id", CurTransform.id + "-div");
 
 			var CurTitle = $("<h5>");
-			CurOutputDiv.addClass("card-title")
+			CurOutputDiv.addClass("card-title");
 			CurTitle.html(CurTransform.name);
 			CurTitle.appendTo(CurOutputDiv);
 

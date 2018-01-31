@@ -9,21 +9,24 @@
 
 	<title>Texty</title>
 	<style>
-		html,body
-		{
+		html,
+		body {
 			height: 100%;
 		}
-		.fill
-		{
+
+		.fill {
 			height: 100%;
 			width: 100%;
 		}
+
 		#Input {
 			resize: none;
 		}
+
 		#Outputs {
 			overflow-y: auto;
 		}
+
 		#Outputs textarea {
 			resize: none;
 		}
@@ -44,18 +47,18 @@
 			<div id="Inputs" class="col-md-4">
 				<div class="jumbotron vertical-center">
 					<h1>Texty</h1>
-					<iframe src="https://ghbtns.com/github-btn.html?user=Wunkolo&repo=Texty&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+					<iframe src="https://ghbtns.com/github-btn.html?user=Wunkolo&repo=Texty&type=star&count=true&size=large" frameborder="0"
+					 scrolling="0" width="160px" height="30px"></iframe>
 				</div>
 				<form>
-					<div class="form-group">
+					<div class="form-group card card-body">
 						<div id="fields" class="form-group">
-							<label for="Input">Input:</label>
-							<textarea id="Input" class="form-control" rows="15"></textarea>
+							<textarea id="Input" class="form-control" rows="15" placeholder="Type here!"></textarea>
 						</div>
 					</div>
 				</form>
 			</div>
-			<div class="col" id="Outputs">
+			<div class="col border-left" id="Outputs">
 			</div>
 		</div>
 	</div>
