@@ -8,6 +8,26 @@
 	 crossorigin="anonymous">
 
 	<title>Texty</title>
+	<style>
+		html,body
+		{
+			height: 100%;
+		}
+		.fill
+		{
+			height: 100%;
+			width: 100%;
+		}
+		#Input {
+			resize: none;
+		}
+		#Outputs {
+			overflow-y: auto;
+		}
+		#Outputs textarea {
+			resize: none;
+		}
+	</style>
 </head>
 
 <body>
@@ -19,18 +39,25 @@
 	 crossorigin="anonymous"></script>
 	<script src="js/Texty.js"></script>
 
-	<div id="Inputs" class="container">
-		<form>
-			<div class="form-group">
-				<div id="fields" class="form-group">
-					<label for="Input">Input:</label>
-					<textarea id="Input" class="form-control" rows="5"></textarea>
+	<div class="container fill">
+		<div class="row" style="height:100%">
+			<div id="Inputs" class="col-md-4">
+				<div class="jumbotron vertical-center">
+					<h1>Texty</h1>
+					<iframe src="https://ghbtns.com/github-btn.html?user=Wunkolo&repo=Texty&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
 				</div>
+				<form>
+					<div class="form-group">
+						<div id="fields" class="form-group">
+							<label for="Input">Input:</label>
+							<textarea id="Input" class="form-control" rows="15"></textarea>
+						</div>
+					</div>
+				</form>
 			</div>
-		</form>
-		<hr>
-	</div>
-	<div id="Outputs" class="container">
+			<div class="col" id="Outputs">
+			</div>
+		</div>
 	</div>
 </body>
 
