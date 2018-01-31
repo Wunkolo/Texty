@@ -7,8 +7,8 @@ var Transforms = [
 		description: "Full width text",
 		Apply: function (Input) {
 			return Input.replace(/[\x21-\x7E]/gu, function (CurChar) {
-				var CharCode = CurChar.charCodeAt(0);
-				return String.fromCharCode(CharCode + 0xFEE0);
+				var CharCode = CurChar.codePointAt(0);
+				return String.fromCodePoint(CharCode + 0xFEE0);
 			});
 		}
 	},
@@ -20,18 +20,18 @@ var Transforms = [
 			return Input
 				// A-Z
 				.replace(/[A-Z]/gu, function (CurChar) {
-					var CharCode = CurChar.charCodeAt(0);
-					return String.fromCharCode(CharCode + 0x2475);
+					var CharCode = CurChar.codePointAt(0);
+					return String.fromCodePoint(CharCode + 0x2475);
 				})
 				// a-z
 				.replace(/[a-z]/gu, function (CurChar) {
-					var CharCode = CurChar.charCodeAt(0);
-					return String.fromCharCode(CharCode + 0x246F);
+					var CharCode = CurChar.codePointAt(0);
+					return String.fromCodePoint(CharCode + 0x246F);
 				})
 				// 1-9
 				.replace(/[1-9]/gu, function (CurChar) {
-					var CharCode = CurChar.charCodeAt(0);
-					return String.fromCharCode(CharCode + 0x242F);
+					var CharCode = CurChar.codePointAt(0);
+					return String.fromCodePoint(CharCode + 0x242F);
 				})
 				// 0
 				.replace(/0/gu, "\u24EA");
