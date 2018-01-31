@@ -18,30 +18,53 @@ var Transforms = [
 		description: "Bubble lettering",
 		Apply: function (Input) {
 			return Input
-			// A-Z
-			.replace(/[A-Z]/gu, function (CurChar) {
-				var CharCode = CurChar.charCodeAt(0);
-				return String.fromCharCode(CharCode + 0x2475);
-			})
-			// a-z
-			.replace(/[a-z]/gu, function (CurChar) {
-				var CharCode = CurChar.charCodeAt(0);
-				return String.fromCharCode(CharCode + 0x246F);
-			})
-			// 1-9
-			.replace(/[1-9]/gu, function (CurChar) {
-				var CharCode = CurChar.charCodeAt(0);
-				return String.fromCharCode(CharCode + 0x242F);
-			})
-			// 0
-			.replace(/0/gu, "\u24EA");
+				// A-Z
+				.replace(/[A-Z]/gu, function (CurChar) {
+					var CharCode = CurChar.charCodeAt(0);
+					return String.fromCharCode(CharCode + 0x2475);
+				})
+				// a-z
+				.replace(/[a-z]/gu, function (CurChar) {
+					var CharCode = CurChar.charCodeAt(0);
+					return String.fromCharCode(CharCode + 0x246F);
+				})
+				// 1-9
+				.replace(/[1-9]/gu, function (CurChar) {
+					var CharCode = CurChar.charCodeAt(0);
+					return String.fromCharCode(CharCode + 0x242F);
+				})
+				// 0
+				.replace(/0/gu, "\u24EA");
+		}
+	},
+	{
+		name: "Math Bold",
+		id: "math-bold",
+		description: "Math-bold lettering",
+		Apply: function (Input) {
+			return Input
+				// A-Z
+				.replace(/[A-Z]/gu, function (CurChar) {
+					var CharCode = CurChar.codePointAt(0);
+					return String.fromCodePoint(CharCode + 0x1D3BF);
+				})
+				// a-z
+				.replace(/[a-z]/gu, function (CurChar) {
+					var CharCode = CurChar.codePointAt(0);
+					return String.fromCodePoint(CharCode + 0x1D3B9);
+				})
+				// 0-9
+				.replace(/[0-9]/gu, function (CurChar) {
+					var CharCode = CurChar.codePointAt(0);
+					return String.fromCodePoint(CharCode + 0x1D79E);
+				});
 		}
 	}
 ];
 
 function InputTick() {
 	var NewString = this.value;
-	$.each(Transforms,function(index,CurTransform){
+	$.each(Transforms, function (index, CurTransform) {
 		$("#" + CurTransform.id).val(
 			CurTransform.Apply(NewString)
 		);
@@ -53,21 +76,21 @@ $(document).ready(
 		$("#Input").on("input", InputTick)
 
 		var Outputs = $("#Outputs");
-		$.each(Transforms,function(index,CurTransform){
+		$.each(Transforms, function (index, CurTransform) {
 			var CurOutputDiv = $("<div>");
 			CurOutputDiv.addClass("form-group")
-			CurOutputDiv.attr("id",CurTransform.id+"-div");
+			CurOutputDiv.attr("id", CurTransform.id + "-div");
 
 			var CurLabel = $("<label>");
-			CurLabel.attr("for",CurTransform.id);
+			CurLabel.attr("for", CurTransform.id);
 			CurLabel.html(CurTransform.name);
 			CurLabel.appendTo(CurOutputDiv);
 
 			var CurTextarea = $("<textarea>");
 			CurTextarea.addClass("form-control");
-			CurTextarea.attr("id",CurTransform.id);
-			CurTextarea.attr("rows",5);
-			CurTextarea.prop("readonly",true);
+			CurTextarea.attr("id", CurTransform.id);
+			CurTextarea.attr("rows", 5);
+			CurTextarea.prop("readonly", true);
 			CurTextarea.appendTo(CurOutputDiv);
 
 			CurOutputDiv.appendTo(Outputs);
