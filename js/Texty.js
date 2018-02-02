@@ -597,7 +597,7 @@ var Transforms = [
 	{
 		name: "Strike script",
 		id: "strikescript",
-		description: "striked script lettering",
+		description: "Striked script lettering",
 		Apply: function (Input) {
 			var Table = {
 				"2": "ƻ",
@@ -639,6 +639,69 @@ var Transforms = [
 				"U": "ᵾ",
 				"Y": "Ɏ",
 				"Z": "Ƶ"
+			};
+			return Input.replace(
+				new RegExp(Object.keys(Table).join("|"), "gu"),
+				function (CurChar) {
+					return Table[CurChar]
+				}
+			);
+		}
+	},
+	{
+		name: "Vertical Flip",
+		id: "flip-v",
+		description: "Vertically flipped lettering",
+		Apply: function (Input) {
+			var Table = {
+				"a": "ɐ",
+				"b": "q",
+				"c": "ɔ",
+				"d": "p",
+				"e": "ǝ",
+				"f": "ɟ",
+				"g": "ƃ",
+				"h": "ɥ",
+				"i": "ı",
+				"j": "ɾ",
+				"k": "ʞ",
+				"l": "ן",
+				"m": "ɯ",
+				"n": "u",
+				"p": "d",
+				"q": "b",
+				"r": "ɹ",
+				"t": "ʇ",
+				"u": "n",
+				"v": "ʌ",
+				"w": "ʍ",
+				"y": "ʎ",
+				"A": "ɐ",
+				"B": "q",
+				"C": "ɔ",
+				"D": "p",
+				"E": "ǝ",
+				"F": "ɟ",
+				"G": "ƃ",
+				"H": "ɥ",
+				"I": "ı",
+				"J": "ɾ",
+				"K": "ʞ",
+				"L": "ן",
+				"M": "ɯ",
+				"N": "u",
+				"O": "o",
+				"P": "d",
+				"Q": "b",
+				"R": "ɹ",
+				"S": "s",
+				"T": "ʇ",
+				"U": "n",
+				"V": "𐌡",
+				"W": "ʍ",
+				"X": "x",
+				"Y": "ʎ",
+				"Z": "z",
 			};
 			return Input.replace(
 				new RegExp(Object.keys(Table).join("|"), "gu"),
