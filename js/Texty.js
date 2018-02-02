@@ -856,45 +856,40 @@ var Transforms = [
 
 function InputTick() {
 	var NewString = this.value;
-	$.each(Transforms, function (index, CurTransform) {
-		$("#" + CurTransform.id).val(
-			CurTransform.Apply(NewString)
-		);
+	Transforms.forEach(function(index, CurTransform){
+		document.getElementById(Transforms[CurTransform].id).value = Transforms[CurTransform].Apply(NewString);
 	});
 }
 
-$(document).ready(
-	function () {
-		$("#Input").on("input", InputTick)
+document.addEventListener("DOMContentLoaded", function() {
+	document.getElementById("Input").addEventListener("input", InputTick);
+	var Outputs = document.getElementById("Outputs");
+	Transforms.forEach(function(index, CurTransform){
+		var CurOutputDiv = document.createElement("div");
+		CurOutputDiv.classList.add("form-group");
+		CurOutputDiv.classList.add("card");
+		CurOutputDiv.classList.add("card-body");
+		CurOutputDiv.id = Transforms[CurTransform].id + "-div";
 
-		var Outputs = $("#Outputs");
-		$.each(Transforms, function (index, CurTransform) {
-			var CurOutputDiv = $("<div>");
-			CurOutputDiv.addClass("form-group");
-			CurOutputDiv.addClass("card");
-			CurOutputDiv.addClass("card-body");
-			CurOutputDiv.attr("id", CurTransform.id + "-div");
+		var CurTitle = document.createElement("h5");
+		CurOutputDiv.classList.add("card-title");
+		CurTitle.innerHTML = Transforms[CurTransform].name;
 
-			var CurTitle = $("<h5>");
-			CurOutputDiv.addClass("card-title");
-			CurTitle.html(CurTransform.name);
-			CurTitle.appendTo(CurOutputDiv);
+		var CurSubTitle = document.createElement("p");
+		CurSubTitle.classList.add("card-subtitle");
+		CurSubTitle.classList.add("mb-2");
+		CurSubTitle.classList.add("text-muted");
+		CurSubTitle.innerHTML = Transforms[CurTransform].description;
 
-			var CurSubTitle = $("<p>");
-			CurSubTitle.addClass("card-subtitle")
-			CurSubTitle.addClass("mb-2")
-			CurSubTitle.addClass("text-muted")
-			CurSubTitle.html(CurTransform.description);
-			CurSubTitle.appendTo(CurOutputDiv);
+		var CurTextarea = document.createElement("textarea");
+		CurTextarea.classList.add("form-control");
+		CurTextarea.id = Transforms[CurTransform].id;
+		CurTextarea.rows = 5;
+		CurTextarea.readOnly = true;
 
-			var CurTextarea = $("<textarea>");
-			CurTextarea.addClass("form-control");
-			CurTextarea.attr("id", CurTransform.id);
-			CurTextarea.attr("rows", 5);
-			CurTextarea.prop("readonly", true);
-			CurTextarea.appendTo(CurOutputDiv);
-
-			CurOutputDiv.appendTo(Outputs);
-		});
-	}
-);
+		CurOutputDiv.appendChild(CurTitle);
+		CurOutputDiv.appendChild(CurSubTitle);
+		CurOutputDiv.appendChild(CurTextarea);
+		Outputs.appendChild(CurOutputDiv);
+	});
+});
