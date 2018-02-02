@@ -13,9 +13,9 @@ var Transforms = [
 		}
 	},
 	{
-		name: "Bubble",
-		id: "bubble",
-		description: "Bubble lettering",
+		name: "Bubbled",
+		id: "bubbled",
+		description: "Bubbled lettering",
 		Apply: function (Input) {
 			return Input
 				// A-Z
@@ -35,6 +35,75 @@ var Transforms = [
 				})
 				// 0
 				.replace(/0/gu, "\u24EA");
+		}
+	},
+	{
+		name: "Squared",
+		id: "squared",
+		description: "Squared lettering",
+		Apply: function (Input) {
+			var Table = {
+				"a": "🄰",
+				"b": "🄱",
+				"c": "🄲",
+				"d": "🄳",
+				"e": "🄴",
+				"f": "🄵",
+				"g": "🄶",
+				"h": "🄷",
+				"i": "🄸",
+				"j": "🄹",
+				"k": "🄺",
+				"l": "🄻",
+				"m": "🄼",
+				"n": "🄽",
+				"o": "🄾",
+				"p": "🄿",
+				"q": "🅀",
+				"r": "🅁",
+				"s": "🅂",
+				"t": "🅃",
+				"u": "🅄",
+				"v": "🅅",
+				"w": "🅆",
+				"x": "🅇",
+				"y": "🅈",
+				"z": "🅉",
+				"A": "🄰",
+				"B": "🄱",
+				"C": "🄲",
+				"D": "🄳",
+				"E": "🄴",
+				"F": "🄵",
+				"G": "🄶",
+				"H": "🄷",
+				"I": "🄸",
+				"J": "🄹",
+				"K": "🄺",
+				"L": "🄻",
+				"M": "🄼",
+				"N": "🄽",
+				"O": "🄾",
+				"P": "🄿",
+				"Q": "🅀",
+				"R": "🅁",
+				"S": "🅂",
+				"T": "🅃",
+				"U": "🅄",
+				"V": "🅅",
+				"W": "🅆",
+				"X": "🅇",
+				"Y": "🅈",
+				"Z": "🅉",
+				"\\+": "⊞",
+				"-": "⊟",
+			};
+			return Input.replace(
+				new RegExp(Object.keys(Table).join("|"), "gu"),
+				function (CurChar) {
+					return Table[CurChar]
+				}
+			);
 		}
 	},
 	{
