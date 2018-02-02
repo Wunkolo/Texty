@@ -513,7 +513,7 @@ var Transforms = [
 		}
 	},
 	{
-		name: "SuperScript",
+		name: "Super script",
 		id: "superscript",
 		description: "Super script lettering",
 		Apply: function (Input) {
@@ -585,6 +585,60 @@ var Transforms = [
 				"=": "\u207C",
 				"\\(": "\u207D",
 				"\\)": "\u207E"
+			};
+			return Input.replace(
+				new RegExp(Object.keys(Table).join("|"), "gu"),
+				function (CurChar) {
+					return Table[CurChar]
+				}
+			);
+		}
+	},
+	{
+		name: "Strike script",
+		id: "strikescript",
+		description: "striked script lettering",
+		Apply: function (Input) {
+			var Table = {
+				"2": "ƻ",
+				"a": "Ⱥ",
+				"b": "ƀ",
+				"c": "ȼ",
+				"d": "đ",
+				"e": "ɇ",
+				"g": "ǥ",
+				"h": "ħ",
+				"i": "ɨ",
+				"j": "ɉ",
+				"k": "ꝁ",
+				"l": "ł",
+				"o": "ø",
+				"p": "ᵽ",
+				"q": "ꝗ",
+				"r": "ɍ",
+				"t": "ŧ",
+				"u": "ᵾ",
+				"y": "ɏ",
+				"z": "ƶ",
+				"A": "Ⱥ",
+				"B": "Ƀ",
+				"C": "Ȼ",
+				"D": "Đ",
+				"E": "Ɇ",
+				"G": "Ǥ",
+				"H": "Ħ",
+				"I": "Ɨ",
+				"J": "Ɉ",
+				"K": "Ꝁ",
+				"L": "Ł",
+				"O": "Ø",
+				"P": "Ᵽ",
+				"Q": "Ꝗ",
+				"R": "Ɍ",
+				"T": "Ŧ",
+				"U": "ᵾ",
+				"Y": "Ɏ",
+				"Z": "Ƶ"
 			};
 			return Input.replace(
 				new RegExp(Object.keys(Table).join("|"), "gu"),
