@@ -593,7 +593,15 @@ var Transforms = [
 				}
 			);
 		}
-	}
+	},
+	{
+		name: "Reversed",
+		id: "reversed",
+		description: "Reversed string",
+		Apply: function (Input) {
+			return Input.split("").reverse().join('');
+		}
+	},
 ];
 
 function InputTick() {
