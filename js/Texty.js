@@ -919,36 +919,110 @@ var Transforms = [
 			);
 		}
 	},
+	{
+		name: "Not Japanese",
+		id: "nihongo",
+		description: "English looking japanese",
+		Apply: function (Input) {
+			var Table = {
+				"a": "卂",
+				"b": "乃",
+				"c": "匚",
+				"d": "刀",
+				"e": "乇",
+				"f": "下",
+				"g": "厶",
+				"h": "卄",
+				"i": "工",
+				"j": "丁",
+				"k": "长",
+				"l": "乚",
+				"m": "从",
+				"n": "𠘨",
+				"o": "口",
+				"p": "尸",
+				"q": "㔿",
+				"r": "尺",
+				"s": "丂",
+				"t": "ㄒ",
+				"u": "凵",
+				"v": "リ",
+				"w": "山",
+				"x": "乂",
+				"y": "丫",
+				"z": "乙",
+				"A": "卂",
+				"B": "乃",
+				"C": "匚",
+				"D": "刀",
+				"E": "乇",
+				"F": "下",
+				"G": "厶",
+				"H": "卄",
+				"I": "工",
+				"J": "丁",
+				"K": "长",
+				"L": "乚",
+				"M": "从",
+				"N": "𠘨",
+				"O": "口",
+				"P": "尸",
+				"Q": "㔿",
+				"R": "尺",
+				"S": "丂",
+				"T": "ㄒ",
+				"U": "凵",
+				"V": "リ",
+				"W": "山",
+				"X": "乂",
+				"Y": "丫",
+				"Z": "乙",
+			};
+			return Input.replace(
+				new RegExp(Object.keys(Table).join("|"), "gu"),
+				function (CurChar) {
+					return Table[CurChar]
+				}
+			);
+		}
+	},
 ];
 
 function InputTick() {
-	var NewString = this.value;
+	Convert(this.value);
+}
+
+function Convert(NewString) {
 	Transforms.forEach(function(index, CurTransform){
 		document.getElementById(Transforms[CurTransform].id).value = Transforms[CurTransform].Apply(NewString);
 	});
 }
 
 document.addEventListener("DOMContentLoaded", function() {
+	document.getElementById('Input').onblur = function(e) {
+		window.history.pushState('', 'Texty', '?input=' + this.value);
+	}
+
 	document.getElementById("Input").addEventListener("input", InputTick);
-	var Outputs = document.getElementById("Outputs");
+	const Outputs = document.getElementById("Outputs");
 	Transforms.forEach(function(index, CurTransform){
-		var CurOutputDiv = document.createElement("div");
+		const CurOutputDiv = document.createElement("div");
 		CurOutputDiv.classList.add("form-group");
 		CurOutputDiv.classList.add("card");
 		CurOutputDiv.classList.add("card-body");
 		CurOutputDiv.id = Transforms[CurTransform].id + "-div";
 
-		var CurTitle = document.createElement("h5");
+		const CurTitle = document.createElement("h5");
 		CurOutputDiv.classList.add("card-title");
 		CurTitle.innerHTML = Transforms[CurTransform].name;
 
-		var CurSubTitle = document.createElement("p");
+		const CurSubTitle = document.createElement("p");
 		CurSubTitle.classList.add("card-subtitle");
 		CurSubTitle.classList.add("mb-2");
 		CurSubTitle.classList.add("text-muted");
 		CurSubTitle.innerHTML = Transforms[CurTransform].description;
 
-		var CurTextarea = document.createElement("textarea");
+		const CurTextarea = document.createElement("textarea");
 		CurTextarea.classList.add("form-control");
 		CurTextarea.id = Transforms[CurTransform].id;
 		CurTextarea.rows = 5;
@@ -959,4 +1033,8 @@ document.addEventListener("DOMContentLoaded", function() {
 		CurOutputDiv.appendChild(CurTextarea);
 		Outputs.appendChild(CurOutputDiv);
 	});
+	var url = new URL(window.location)
+	if (url.searchParams.get('input') != null)
+	document.getElementById("Input").value = url.searchParams.get('input');
+	Convert(document.getElementById("Input").value);
 });
